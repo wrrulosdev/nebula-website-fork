@@ -1,4 +1,5 @@
 ---
+import { discordUrl } from "@constants/urls";
 import logo from "@public/logo.webp";
 ---
 
@@ -31,8 +32,13 @@ import logo from "@public/logo.webp";
       </div>
       <ul class="nav-urls" id="nav-urls">
         <li class="nav-item"><a href="#features">Features</a></li>
+        <li class="nav-item"><a href="#demo">Demo</a></li>
         <li class="nav-item"><a href="#pricing">Pricing</a></li>
-        <li class="nav-item"><a href="#discord">Discord</a></li>
+        <li class="nav-item">
+          <a href={String(discordUrl)} target="_blank" rel="noopener noreferrer"
+            >Discord</a
+          >
+        </li>
       </ul>
     </nav>
     <slot />
