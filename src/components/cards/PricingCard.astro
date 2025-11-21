@@ -1,0 +1,94 @@
+---
+import Button from "@ui/Button.astro";
+const {
+  tier = "Community",
+  price = "Gratis",
+  features = [],
+  buttonUrl = "#",
+} = Astro.props;
+---
+
+<article class="pricing-card animate-fade-slide-up">
+  <h3 class="tier">{tier}</h3>
+  <p class="price">{price}</p>
+
+  <ul class="features">
+    {
+      features.map((f: String) => (
+        <li>
+          <span class="check">✔</span> {f}
+        </li>
+      ))
+    }
+  </ul>
+
+  <Button
+    className="animate-fade-slide-up action-btn"
+    text="Buy Now"
+    url={buttonUrl}
+  />
+</article>
+
+<style>
+  .pricing-card {
+    width: 100%;
+    padding: 32px 28px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #2d1b4e 0%, #1a0a2e 100%);
+    border: 1px solid var(--purple-glow-strong);
+    box-shadow: 0 0 25px var(--purple-glow-soft);
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 420px;
+  }
+
+  .tier {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--purple2);
+    margin: 0;
+  }
+
+  .price {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--purple1);
+    margin: 0;
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    color: #d9c7f5;
+    overflow-y: auto;
+  }
+
+  .features li {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 10px;
+    font-size: 0.95rem;
+  }
+
+  .check {
+    color: var(--purple2);
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  .action-btn:hover {
+    background: var(--purple2);
+    color: #1a0a2e;
+  }
+</style>

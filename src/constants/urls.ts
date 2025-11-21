@@ -1,0 +1,1 @@
+export const discordUrl: String = "https://discord.gg/USU58JPSCA";

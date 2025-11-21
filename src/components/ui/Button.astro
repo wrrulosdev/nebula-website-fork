@@ -1,0 +1,43 @@
+---
+const { className = "", text = "Click", url = "#" } = Astro.props;
+---
+
+<a
+  class={`btn-animated ${className}`}
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  {text}
+</a>
+
+<style>
+  a {
+    padding: 14px 22px;
+    background: var(--purple1);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  a:hover {
+    background: var(--purple3);
+  }
+
+  @media (min-width: 768px) {
+    a {
+      padding: 16px 24px;
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    a {
+      padding: 18px 26px;
+      font-size: 1.1rem;
+    }
+  }
+</style>

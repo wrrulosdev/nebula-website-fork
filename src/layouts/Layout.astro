@@ -1,0 +1,456 @@
+---
+import logo from "@public/logo.webp";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Nebula | Java Obfuscator</title>
+  </head>
+  <body>
+    <div class="stars" id="stars"></div>
+    <nav>
+      <div class="nav-title">
+        <img src={logo.src} alt="Nebula official logo" class="nav-logo" />
+        <h3>Nebula</h3>
+      </div>
+      <div
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Toggle navigation menu"
+        role="button"
+        tabindex="0"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-urls" id="nav-urls">
+        <li class="nav-item"><a href="#features">Features</a></li>
+        <li class="nav-item"><a href="#pricing">Pricing</a></li>
+        <li class="nav-item"><a href="#discord">Discord</a></li>
+      </ul>
+    </nav>
+    <slot />
+    <footer class="animate-fade-slide-up">
+      <span
+        >© 2025 Nebula Obfuscator. Protecting your Java code with
+        state-of-the-art technology.
+      </span>
+    </footer>
+  </body>
+</html>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    padding: 30px 50px;
+    z-index: 100;
+    border-bottom: 1px solid var(--purple-border-light);
+  }
+
+  .nav-title {
+    display: flex;
+    align-items: center;
+    color: var(--purple2);
+    gap: 8px;
+    font-size: 1.5rem;
+  }
+
+  .nav-logo {
+    height: 1.3em;
+    width: 1.3em;
+  }
+
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 25px;
+    height: 25px;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--purple2);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+
+  .nav-toggle span.open {
+    margin-left: 20px;
+  }
+
+  .nav-urls {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100vh;
+    background: var(--nav-menu-bg);
+    backdrop-filter: blur(10px);
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 20px 20px 20px;
+    gap: 2rem;
+    font-size: 1.1rem;
+
+    pointer-events: none;
+    visibility: hidden;
+
+    transform: translateX(calc(100% + 20px));
+    transition:
+      transform 0.28s ease,
+      visibility 0.28s ease;
+  }
+
+  .nav-urls.open {
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  .nav-item a {
+    color: #fff;
+  }
+
+  footer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--purple1);
+    color: #fff;
+    margin-top: 4rem;
+  }
+
+  footer span {
+    font-size: 0.95rem;
+    padding: 0 20px;
+    white-space: normal;
+  }
+
+  @media (min-width: 769px) {
+    .nav-toggle {
+      display: none;
+    }
+
+    .nav-urls {
+      position: static;
+      width: auto;
+      height: auto;
+      background: transparent;
+      backdrop-filter: none;
+      border-radius: 0;
+      flex-direction: row;
+      padding: 0;
+      gap: 2rem;
+      font-size: 1rem;
+
+      pointer-events: auto;
+      visibility: visible;
+      transform: none;
+      transition: none;
+    }
+
+    .nav-item a {
+      color: #fff;
+      font-weight: 550;
+    }
+  }
+</style>
+
+<style is:global>
+  :root {
+    /* Brand core colors */
+    --purple1: #8a2be2;
+    --purple2: #da70d6;
+    --purple3: #9370db;
+
+    /* Neutral colors */
+    --white: #ffffff;
+    --gray-light: #dcdcdc;
+    --gray-star: #ffffff;
+    --dark-bg-1: #0a0015;
+    --dark-bg-2: #1a0a2e;
+    --dark-bg-3: #2d1b4e;
+
+    /* Navigation backgrounds */
+    --nav-bg: rgba(10, 0, 21, 0.9);
+    --nav-menu-bg: rgba(10, 0, 21, 0.95);
+
+    /* Borders & glows */
+    --purple-glow-strong: rgba(138, 43, 226, 0.5);
+    --purple-glow-soft: rgba(138, 43, 226, 0.4);
+    --purple-border-light: rgba(138, 43, 226, 0.3);
+
+    /* Glow Animations */
+    --glow-purple-1: rgba(138, 43, 226, 0.45);
+    --glow-purple-2: rgba(218, 112, 214, 0.9);
+    --glow-purple-3: rgba(218, 112, 214, 0.3);
+    --glow-purple-4: rgba(218, 112, 214, 0.75);
+    --glow-shadow-1: rgba(138, 43, 226, 0.2);
+    --glow-shadow-2: rgba(218, 112, 214, 0.45);
+    --glow-shadow-3: rgba(138, 43, 226, 0.25);
+
+    /* Scrollbar */
+    --scrollbar-thumb: rgba(138, 43, 226, 0.6);
+    --scrollbar-color: rgba(138, 43, 226, 0.5);
+
+    /* Website Gradients */
+    --gradient-main: linear-gradient(
+      135deg,
+      var(--dark-bg-1) 0%,
+      var(--dark-bg-2) 50%,
+      var(--dark-bg-3) 100%
+    );
+
+    /* Navbar */
+    --nav-height: 90px;
+    --padding-top-nav-section: 50px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--gradient-main);
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  .website-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: 4rem 1rem 2rem;
+    gap: 2.5rem;
+    overflow: hidden;
+  }
+
+  .title {
+    color: var(--purple2);
+  }
+
+  .subtitle {
+    color: var(--gray-light);
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--gray-star);
+    border-radius: 50%;
+    opacity: 0.8;
+  }
+
+  /* Animations */
+
+  @keyframes fadeInSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-25px) scale(0.96);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes textGlowPulse {
+    0% {
+      text-shadow: 0 0 10px var(--glow-purple-1);
+    }
+    50% {
+      text-shadow: 0 0 18px var(--glow-purple-2);
+    }
+    100% {
+      text-shadow: 0 0 10px var(--glow-purple-1);
+    }
+  }
+
+  @keyframes textGlowSoftPulse {
+    0% {
+      opacity: 0.8;
+      text-shadow: 0 0 6px var(--glow-purple-3);
+    }
+    50% {
+      opacity: 1;
+      text-shadow: 0 0 14px var(--glow-purple-4);
+    }
+    100% {
+      opacity: 0.8;
+      text-shadow: 0 0 6px var(--glow-purple-3);
+    }
+  }
+
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes softDropShadowPulse {
+    0% {
+      filter: drop-shadow(0 0 0px var(--glow-purple-3));
+    }
+    50% {
+      filter: drop-shadow(0 0 6px var(--glow-shadow-3));
+    }
+    100% {
+      filter: drop-shadow(0 0 0px var(--glow-purple-3));
+    }
+  }
+
+  @keyframes scaleUpShadowIn {
+    0% {
+      opacity: 0.9;
+      transform: scale(1);
+      filter: drop-shadow(0 0 0px var(--glow-shadow-1));
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.06);
+      filter: drop-shadow(0 0 10px var(--glow-shadow-2));
+    }
+  }
+
+  @keyframes scaleDownShadowOut {
+    0% {
+      opacity: 1;
+      transform: scale(1.06);
+      filter: drop-shadow(0 0 10px var(--glow-purple-2));
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: drop-shadow(0 0 0px var(--glow-shadow-1));
+    }
+  }
+
+  .animate-fade-slide-down,
+  .text-glow-pulse,
+  .animate-fade-slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(6px);
+    transition: none;
+  }
+
+  .animate-fade-slide-down.active {
+    animation:
+      fadeInSlideDown 1.2s ease forwards,
+      textGlowPulse 3.5s infinite ease-in-out 1.2s;
+  }
+
+  .text-glow-pulse.active {
+    animation: textGlowSoftPulse 3s infinite ease-in-out;
+    color: var(--purple2);
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+
+  .animate-fade-slide-up.active {
+    animation:
+      fadeInSlideUp 1.2s ease forwards 0.25s,
+      softDropShadowPulse 4.5s infinite ease-in-out 1.5s;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    scrollbar-color: var(--scrollbar-color) transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+</style>
+
+<script>
+  import { initAnimateOnScroll } from "@scripts/ui/animateOnScroll";
+  initAnimateOnScroll();
+
+  import { generateStars } from "@scripts/ui/stars";
+  generateStars();
+
+  const navToggle: HTMLElement | null = document.getElementById("nav-toggle");
+  const navUrls: HTMLElement | null = document.getElementById("nav-urls");
+  const hamburgerSpans: NodeListOf<HTMLSpanElement> | undefined =
+    navToggle?.querySelectorAll("span");
+
+  navToggle?.addEventListener("click", () => {
+    navUrls?.classList.toggle("open");
+
+    if (hamburgerSpans) {
+      hamburgerSpans.forEach((span, _) => {
+        span.classList.toggle("open");
+      });
+    }
+  });
+</script>

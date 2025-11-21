@@ -1,0 +1,101 @@
+---
+import { discordUrl } from "@constants/urls";
+import Button from "@ui/Button.astro";
+
+type Stat = {
+  countTarget: string;
+  suffix: string;
+  label: string;
+};
+
+const stats: Stat[] = [
+  { countTarget: "120000", suffix: "", label: "Lines protected" },
+  { countTarget: "12", suffix: "", label: "Avg. protection layers" },
+  { countTarget: "99", suffix: "/100", label: "Security rating" },
+];
+---
+
+<section class="home website-section">
+  <h1 class="title animate-fade-slide-down">Nebula Obfuscator</h1>
+  <p class="changing-text text-glow-pulse animate-fade-slide-up">
+    Enterprise-level security · High performance · Anti-reverse engineering
+  </p>
+  <p class="subtitle animate-fade-slide-up">
+    Protect your Java applications with advanced bytecode obfuscation engineered
+    for security, stability and professional pipelines.
+  </p>
+  <Button
+    className="animate-fade-slide-up"
+    text="Get Started"
+    url={discordUrl}
+  />
+  <article class="stats">
+    {
+      stats.map(({ countTarget, suffix, label }) => (
+        <div class="animate-fade-slide-up">
+          <h3
+            class="stat-number"
+            data-count-target={countTarget}
+            data-suffix={suffix}
+          />
+          <span>{label}</span>
+        </div>
+      ))
+    }
+  </article>
+</section>
+
+<style>
+  .home {
+    justify-content: center;
+    padding-inline: 20px;
+    padding-top: calc(var(--nav-height) + var(--padding-top-nav-section));
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .subtitle {
+    max-width: 650px;
+  }
+
+  .stats {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stats div {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glow-shadow-1);
+    padding: 18px 28px;
+    border-radius: 1rem;
+    min-width: 130px;
+    backdrop-filter: blur(6px);
+    transition: 0.3s ease;
+  }
+
+  .stats div:hover {
+    transform: translateY(-8px);
+    border-color: var(--purple2);
+    box-shadow: 0 0 18px var(--glow-shadow-3);
+  }
+
+  .stats h3 {
+    color: var(--purple2);
+    font-size: 1.6rem;
+  }
+
+  .stats span {
+    color: #dcdcdc;
+    font-size: 0.9rem;
+  }
+</style>
+
+<script>
+  import { applyCountUpAnimation } from "@scripts/ui/counter";
+  applyCountUpAnimation();
+</script>
