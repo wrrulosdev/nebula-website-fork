@@ -1,0 +1,95 @@
+---
+import { discordUrl } from "@constants/urls";
+import PricingCard from "./cards/PricingCard.astro";
+
+const pricingPlans = [
+  {
+    tier: "Basic",
+    price: "15 USD",
+    features: [
+      "Class, Field, Method name remapper",
+      "Integer encrypter",
+      "AESString encrypter",
+      "Arithmetic transformer",
+      "IfTraping",
+      "Generic flow",
+      "Useless code remover",
+    ],
+    buttonText: "Buy now",
+    buttonUrl: discordUrl,
+  },
+  {
+    tier: "Advanced",
+    price: "25 USD",
+    features: [
+      "All basic features",
+      "Switch table to if converter",
+      "Enhanced string encrypter",
+      "Useless tcb insertion",
+      "Light opaque predicates",
+    ],
+    buttonText: "Buy now",
+    buttonUrl: discordUrl,
+  },
+];
+---
+
+<section class="pricing-section website-section">
+  <div class="section-header">
+    <h2 class="title animate-fade-slide-down">Pricing Plans</h2>
+  </div>
+
+  <div class="pricing-grid">
+    {
+      pricingPlans.map((plan) => (
+        <PricingCard
+          tier={plan.tier}
+          price={plan.price}
+          features={plan.features}
+          buttonText={plan.buttonText}
+          buttonUrl={plan.buttonUrl}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    padding-top: calc(var(--nav-height) + var(--padding-top-nav-section));
+  }
+
+  .section-header {
+    max-width: 800px;
+    padding: 0 1rem;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 769px) {
+    .pricing-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 360px) {
+    .pricing-card {
+      padding: 24px 16px;
+      min-height: auto;
+    }
+  }
+</style>

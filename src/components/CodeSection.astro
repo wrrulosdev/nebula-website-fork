@@ -1,0 +1,51 @@
+---
+import JavaCodeCard from "./cards/JavaCodeCard.astro";
+import { originalCode, obfuscatedCode } from "@constants/javaCode";
+---
+
+<section class="code-section website-section">
+  <div class="section-header">
+    <h2 class="title animate-fade-slide-down">See Nebula in action</h2>
+    <p class="subtitle animate-fade-slide-up">
+      See how Nebula transforms your Java code into something completely
+      unreadable, while maintaining all its functionality.
+    </p>
+  </div>
+
+  <div class="code-cards-container">
+    <JavaCodeCard title="Original code" code={originalCode} />
+    <JavaCodeCard title="Obfuscated code" code={obfuscatedCode} />
+  </div>
+</section>
+
+<style>
+  .code-section {
+    padding-top: calc(var(--nav-height) + var(--padding-top-nav-section));
+  }
+
+  .section-header {
+    max-width: 800px;
+    padding: 0 1rem;
+  }
+
+  .title {
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .code-cards-container {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 1rem;
+  }
+</style>
